@@ -7,7 +7,7 @@ Tech Stack
  - State Management: React Query (TanStack)
 
 Demo: 🔗 https://reactjs-challenge-production.up.railway.app/
-Note: This version is deployed with the free plan so performance and response speed may be affected.
+Note: It has been automatically deployed on Railway, and this version is deployed with the free plan so performance and responsiveness may be affected.
 
 # ----------------------------------------------- #
 
