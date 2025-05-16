@@ -6,10 +6,12 @@ export const useAuthStore = create(
     (set) => ({
       user: null,
       token: null,
+      force_open_login: false,
       login: (user, token) => {
         set({ user, token })
       },
       logout: () => set({ user: null, token: null }),
+      setOpenLogin: (e) => set({ force_open_login: e })
     }),
     {
       name: 'auth-storage',

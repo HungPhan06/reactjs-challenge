@@ -17,7 +17,7 @@ import {
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getProducts, likeProduct } from '../api/products';
 import { onLogout } from "../api/auth"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthStore } from '../store/auth';
 import LoginModal from '../components/LoginModal';
 import AddProductModal from '../components/AddProductModal';
@@ -31,8 +31,15 @@ export default function ProductPage() {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const force_open_login = useAuthStore((s) => s.force_open_login);
   const queryClient = useQueryClient();
   const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    if (!user && force_open_login) {
+      openLogin();
+    }
+  }, [force_open_login]);
 
   const { data, isLoading } = useQuery({
     queryKey: ['products', debouncedSearch, page],
@@ -95,7 +102,12 @@ export default function ProductPage() {
   };
 
   const openLogin = () => setIsLoginOpen(true);
-  const closeLogin = () => setIsLoginOpen(false);
+  const closeLogin = () => {
+    setIsLoginOpen(false);
+    if (force_open_login) {
+      useAuthStore.getState().setOpenLogin(false);
+    }
+  }
   const openAdd = () => setIsAddOpen(true);
   const closeAdd = () => setIsAddOpen(false);
 
