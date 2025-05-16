@@ -6,6 +6,8 @@ Tech Stack
  - Icons: React Icons
  - State Management: React Query (TanStack)
 
+Demo: 🔗 https://reactjs-challenge-production.up.railway.app/
+
 # ----------------------------------------------- #
 
 # Setup & Installation
@@ -15,9 +17,10 @@ or
 yarn install
 
 2. Configure environment variables:
-VITE_REACT_APP_BASE_URL=your_endpoint
-example: 
-VITE_REACT_APP_BASE_URL=http://localhost:8089
+ - VITE_REACT_APP_BASE_URL=your_endpoint
+
+Example: 
+ - VITE_REACT_APP_BASE_URL=https://nodejs-challenge-production.up.railway.app
 
 3. Run the development server
 npm run dev
